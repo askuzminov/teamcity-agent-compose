@@ -6,3 +6,7 @@ Add support:
 
 - [Docker Compose](https://docs.docker.com/compose/)
 - [Node.js](https://nodejs.org)
+
+## Docker Hub
+
+`askuzminov/teamcity-agent-compose`
