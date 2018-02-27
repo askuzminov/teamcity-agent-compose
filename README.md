@@ -10,3 +10,7 @@ Add support:
 ## Docker Hub
 
 `askuzminov/teamcity-agent-compose`
+
+## Source Code
+
+<https://github.com/askuzminov/teamcity-agent-compose>
