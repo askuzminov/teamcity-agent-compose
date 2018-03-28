@@ -13,6 +13,7 @@ RUN apt-get install -y\
     gcc \
     gnupg \
     make \
-    python
+    python\
+    bzip2
 
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - && apt-get -y install nodejs
