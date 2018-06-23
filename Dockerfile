@@ -1,12 +1,12 @@
 FROM jetbrains/teamcity-agent:latest
 
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - 
+
 RUN apt-get update
 
-RUN apt-get install -y docker-ce
-RUN curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-RUN chmod +x /usr/local/bin/docker-compose
-
 RUN apt-get install -y\
+    nodejs\
+    docker-ce\
     binutils-gold \
     curl \
     g++ \
@@ -16,4 +16,19 @@ RUN apt-get install -y\
     python\
     bzip2
 
-RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - && apt-get -y install nodejs
+RUN curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
+
+RUN curl -L https://releases.rancher.com/cli/v0.6.10/rancher-linux-amd64-v0.6.10.tar.gz -o /tmp/rancher.tar.gz
+RUN tar -xzf /tmp/rancher.tar.gz -C /tmp
+RUN cp /tmp/rancher-v0.6.10/rancher /usr/local/bin/rancher
+RUN chmod +x /usr/local/bin/rancher
+RUN rm -rf /tmp/rancher-v0.6.10
+RUN rm /tmp/rancher.tar.gz
+
+RUN curl -L https://releases.rancher.com/compose/v0.12.5/rancher-compose-linux-amd64-v0.12.5.tar.gz -o /tmp/rancher-compose.tar.gz
+RUN tar -xzf /tmp/rancher-compose.tar.gz -C /tmp
+RUN cp /tmp/rancher-compose-v0.12.5/rancher-compose /usr/local/bin/rancher-compose
+RUN chmod +x /usr/local/bin/rancher-compose
+RUN rm -rf /tmp/rancher-compose-v0.12.5
+RUN rm /tmp/rancher-compose.tar.gz
